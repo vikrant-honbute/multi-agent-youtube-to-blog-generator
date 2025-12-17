@@ -1,149 +1,176 @@
-CrewAI Multi-Agent YouTube to Blog Generator
+# 🧠🎥 Multi-Agent YouTube → Blog Generator (CrewAI + Groq)
 
-A multi-agent AI system built using CrewAI that automatically researches educational YouTube videos and converts them into well-structured technical blog posts.
+A **multi-agent AI system** built with **CrewAI** that researches educational YouTube content and automatically generates a **beginner-friendly technical blog** using a **Groq-powered LLM**.
 
-This project demonstrates agent collaboration, tool-augmented LLM reasoning, and real-world AI orchestration using Groq-powered language models.
+The system uses **two specialized agents** working sequentially:
+1. A **YouTube Researcher** agent that extracts insights from a specific YouTube channel.
+2. A **Technical Blog Writer** agent that converts the research into a clean, structured Markdown blog.
 
-🚀 Project Overview
+---
 
-Instead of using a single AI model, this system uses multiple specialized AI agents, each responsible for a specific task:
+## 🚀 What This Project Does
 
-A Research Agent searches YouTube videos and extracts key insights
+- Takes a **topic** as input  
+- Searches **YouTube videos** from a specific channel (e.g. *3Blue1Brown*)  
+- Extracts **key ideas, intuition, and explanations**  
+- Writes a **complete technical blog post**  
+- Saves the final output as a **Markdown file**
 
-A Writer Agent converts those insights into a clear, readable blog post
+---
 
-CrewAI coordinates the workflow between agents
+## 🤖 Agent Architecture
 
-The final output is generated as a Markdown blog file.
+| Agent | Role | Responsibility |
+|------|-----|---------------|
+| **YouTube Researcher** | Research Agent | Finds and extracts insights from YouTube videos |
+| **Technical Blog Writer** | Writing Agent | Writes a beginner-friendly blog from the research |
 
-🧠 Key Concepts Demonstrated
+Agents run **sequentially** using CrewAI’s workflow engine.
 
-Multi-agent AI architecture
+---
 
-Agent role separation (research vs writing)
+## 🧩 Core Components
 
-Tool-augmented LLM workflows
+### 🧠 LLM
+- **Provider:** Groq  
+- **Model:** `llama-3.1-8b-instant`  
+- **Temperature:** 0.2  
+- **Max Tokens:** 600  
 
-Sequential task orchestration using CrewAI
+### 🛠 Tool
+- **YoutubeChannelSearchTool**  
+- Restricted to a **specific YouTube channel**  
+  - Example used: `https://www.youtube.com/@3blue1brown`
 
-Real-world challenges like rate limiting and retries
+### 🧱 Frameworks & Libraries
+- CrewAI  
+- Groq LLM  
+- crewai-tools  
+- python-dotenv  
 
-Clean, modular Python project structure
+---
 
-🏗️ Architecture
-User Topic
-   ↓
-Research Agent
-   ↓  (YouTube Channel Search Tool)
-Extracted Insights
-   ↓
-Writer Agent
-   ↓
-Markdown Blog Output
+## 📁 Project Structure
+├── agents.py # Defines the AI agents (Researcher & Writer)
+├── tasks.py # Defines research and writing tasks
+├── tools.py # YouTube channel search tool
+├── cre.py # Crew setup and execution
+├── final_blog.md # Generated blog output (created at runtime)
+└── .env # Environment variables (Groq API key)
 
-🛠️ Tech Stack
 
-Python
+---
 
-CrewAI
+## 🧠 Agent Definitions
 
-CrewAI Tools
+### 🔍 YouTube Researcher Agent
+- Searches YouTube videos related to the topic  
+- Extracts:
+  - Main ideas  
+  - Intuition  
+  - Key explanations  
+- Uses a **YouTube search tool**  
+- No memory, no delegation (fully controlled)
 
-Groq LLMs (via LiteLLM)
+### ✍️ Technical Blog Writer Agent
+- Converts research into a **clear, simple blog**  
+- Output format: **Markdown**  
+- Saves output to `final_blog.md`
 
-YouTube Channel Search Tool
+---
 
-python-dotenv
+## 📝 Tasks Workflow
 
-📂 Project Structure
-.
-├── agents.py        # Agent definitions (Researcher & Writer)
-├── tools.py         # YouTube channel search tool
-├── tasks.py         # Task definitions for each agent
-├── cre.py           # Crew orchestration and execution
-├── outputs/         # Sample generated blog outputs
-├── README.md
-└── .gitignore
+### 1️⃣ Research Task
+- Input: `{topic}`  
+- Output: Structured research summary  
+- Agent: **YouTube Researcher**
 
-⚙️ How It Works (Step-by-Step)
+### 2️⃣ Writing Task
+- Input: Research summary  
+- Output: Full blog post in Markdown  
+- Agent: **Technical Blog Writer**  
+- File Output: `final_blog.md`
 
-User provides a topic
+---
 
-CrewAI assigns the topic to the Research Agent
+## ⚙️ Execution Flow
 
-Research Agent uses a YouTube search tool to extract insights
+The crew runs in **sequential mode**:
 
-Research output is passed to the Writer Agent
+YouTube Researcher → Technical Blog Writer → Markdown Blog File
 
-Writer Agent generates a structured blog post
 
-Blog is saved as a Markdown file
+Crew configuration:
+- Memory: ❌ Disabled  
+- Cache: ❌ Disabled  
+- Max RPM: 5 (prevents Groq rate limits)
 
-▶️ How to Run Locally
-1️⃣ Clone the repository
-git clone https://github.com/your-username/crewai-youtube-blog-generator.git
-cd crewai-youtube-blog-generator
+---
 
-2️⃣ Create virtual environment
-python -m venv venv
-venv\Scripts\activate
+## ▶️ How to Run
 
-3️⃣ Install dependencies
-pip install -r requirements.txt
+### 1️⃣ Install dependencies
+```bash
+pip install crewai crewai-tools python-dotenv
 
-4️⃣ Set environment variables
+## 2️⃣ Set up environment variables
 
-Create a .env file:
+Create a `.env` file:
 
+# env
 GROQ_API_KEY=your_groq_api_key_here
 
-5️⃣ Run the project
+---
+
+## 3️⃣ Run the crew
+
+# bash
 python cre.py
 
-📄 Example Output
+---
 
-Sample generated blog files are available in:
+## 📄 Output
 
-outputs/sample_blog.md
+The final blog is saved as:
 
+# text
+final_blog.md
 
-The output is generated automatically in Markdown format, ready for publishing.
+Console output also displays the generated content.
 
-💡 What This Project Demonstrates
+---
 
-Designing AI systems using agent-based architecture
+## 💡 Example Topic Used
 
-Integrating external tools with LLM reasoning
+# text
+How pi was almost 6.283185 (Tau vs Pi) – 3Blue1Brown
 
-Managing LLM constraints such as token limits and retries
+---
 
-Building scalable and maintainable GenAI pipelines
+## 🔮 Future Improvements (Optional)
 
-Practical use of CrewAI beyond basic demos
+- Support multiple YouTube channels
+- Add web article research alongside YouTube
+- Enable agent memory for long research chains
+- Add CLI or web UI (Streamlit / FastAPI)
+- Allow user-defined output formats (HTML / PDF)
 
-📌 Use Cases
+---
 
-Automated blog generation from educational content
+## 📝 License
 
-Research summarization from video platforms
-
-Content pipelines for technical writers
-
-Demonstration of multi-agent AI systems for interviews
-
-📄 License
-
+# text
 MIT License
 
-🙌 Acknowledgements
+Free to use, modify, and distribute.
 
-CrewAI for multi-agent orchestration
+---
 
-Groq for fast LLM inference
+## 🙌 Credits
 
-3Blue1Brown and similar creators for educational inspiration
+- CrewAI for agent orchestration
+- Groq for ultra-fast LLM inference
+- 3Blue1Brown for high-quality educational content
 
-✅ Final Notes
 
-This project is designed to showcase real-world AI system design, not just prompt engineering.
-It reflects production-style thinking with agent coordination, tooling, and orchestration.
