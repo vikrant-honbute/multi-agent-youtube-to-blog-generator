@@ -1,6 +1,32 @@
-# gitignore template for LangChain products, e.g., LangGraph, LangSmith
-# website: https://www.langchain.com/
-# website: https://www.langchain.com/langgraph
+# ----------------------------
+# Python
+# ----------------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
 
-# LangGraph
-.langgraph_api/
+# ----------------------------
+# Virtual Environment
+# ----------------------------
+venv/
+.env
+
+# ----------------------------
+# OS / Editor
+# ----------------------------
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# ----------------------------
+# Logs
+# ----------------------------
+*.log
+
+# ----------------------------
+# Outputs (optional)
+# ----------------------------
+# Uncomment if you don't want to push outputs
+# outputs/
