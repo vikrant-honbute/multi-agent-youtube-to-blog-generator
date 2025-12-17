@@ -113,20 +113,19 @@ Crew configuration:
 ### 1️⃣ Install dependencies
 ```bash
 pip install crewai crewai-tools python-dotenv
+```
 
-## 2️⃣ Set up environment variables
+### 2️⃣ Set up environment variables
+Create a `.env` file in the root directory:
 
-Create a `.env` file:
-
-# env
+```ini
 GROQ_API_KEY=your_groq_api_key_here
+```
 
----
-
-## 3️⃣ Run the crew
-
-# bash
+### 3️⃣ Run the crew
+```bash
 python cre.py
+```
 
 ---
 
@@ -134,8 +133,7 @@ python cre.py
 
 The final blog is saved as:
 
-# text
-final_blog.md
+`final_blog.md`
 
 Console output also displays the generated content.
 
@@ -143,25 +141,23 @@ Console output also displays the generated content.
 
 ## 💡 Example Topic Used
 
-# text
-How pi was almost 6.283185 (Tau vs Pi) – 3Blue1Brown
+**Topic:** How pi was almost 6.283185 (Tau vs Pi) – 3Blue1Brown
 
 ---
 
 ## 🔮 Future Improvements (Optional)
 
-- Support multiple YouTube channels
-- Add web article research alongside YouTube
-- Enable agent memory for long research chains
-- Add CLI or web UI (Streamlit / FastAPI)
-- Allow user-defined output formats (HTML / PDF)
+- [ ] Support multiple YouTube channels
+- [ ] Add web article research alongside YouTube
+- [ ] Enable agent memory for long research chains
+- [ ] Add CLI or web UI (Streamlit / FastAPI)
+- [ ] Allow user-defined output formats (HTML / PDF)
 
 ---
 
 ## 📝 License
 
-# text
-MIT License
+**MIT License**
 
 Free to use, modify, and distribute.
 
@@ -169,8 +165,7 @@ Free to use, modify, and distribute.
 
 ## 🙌 Credits
 
-- CrewAI for agent orchestration
-- Groq for ultra-fast LLM inference
-- 3Blue1Brown for high-quality educational content
-
+- **CrewAI** for agent orchestration
+- **Groq** for ultra-fast LLM inference
+- **3Blue1Brown** for high-quality educational content
 
