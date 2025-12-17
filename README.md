@@ -51,12 +51,14 @@ Agents run **sequentially** using CrewAI’s workflow engine.
 ---
 
 ## 📁 Project Structure
-├── agents.py # Defines the AI agents (Researcher & Writer)
-├── tasks.py # Defines research and writing tasks
-├── tools.py # YouTube channel search tool
-├── cre.py # Crew setup and execution
-├── final_blog.md # Generated blog output (created at runtime)
-└── .env # Environment variables (Groq API key)
+
+```text
+├── agents.py       # Defines the AI agents (Researcher & Writer)
+├── tasks.py        # Defines research and writing tasks
+├── tools.py        # YouTube channel search tool
+├── cre.py          # Crew setup and execution
+├── final_blog.md   # Generated blog output (created at runtime)
+└── .env            # Environment variables (Groq API key)
 
 
 ---
